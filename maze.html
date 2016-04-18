@@ -1,0 +1,61 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#knopf').click(function(){
+			var input = $('#input').val();
+			console.log(input);
+			var rows = input.split("\n");
+
+			var html = '';
+
+			for (var y=0; y<rows.length; y++){
+				if (rows[y].trim() == "") continue;
+				var cols = rows[y].split(" ");
+
+				html += '<tr>';
+				console.log(cols);
+
+				for (var x=0; x<cols.length; x++){
+					if (cols[x].trim() == "") continue;
+					var node = cols[x];
+					var restStyle = '';
+
+					if (node - 8 < 0) restStyle += 'border-left:0;';
+					else node -= 8;
+					if (node - 4 < 0) restStyle += 'border-bottom:0;';
+					else node -= 4;
+					if (node - 2 < 0) restStyle += 'border-right:0;';
+					else node -= 2;
+					if (node % 2 == 0) restStyle += 'border-top:0;';
+
+					html += '<td style="border: 1px solid black; '+restStyle+' ">&nbsp;</td>';
+				}
+
+				html += '</tr>';
+			}
+
+
+			$('#table').html(html);
+		});
+	});
+	</script>
+	<style type="text/css">
+	table {
+		border-collape: collapse;
+		border-spacing: 0;
+	}
+	table td {
+		line-height: 8px;
+		width: 8px;
+	}
+	</style>
+</head>
+<body>
+	<textarea id="input"></textarea><button id="knopf">zeichne</button>
+	<table id="table" border="0">
+	</table>
+</body>
+</html>

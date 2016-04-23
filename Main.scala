@@ -11,7 +11,7 @@ object Main extends App{
 
   val a: MazeGenerator = new MazeGenerator()
   // I get a stack overflow exception at about 100
-  // TODO: better use of collections
+  // TODO: better use of collections (or no recursion?)
   a.generate(80)
 
 }
